@@ -15,6 +15,7 @@ public class PlayerLogic : MonoBehaviour
     // Called when a script is enabled
     void Start()
     {
+        camera = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Speed;
     }
