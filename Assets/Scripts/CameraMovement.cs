@@ -32,7 +32,15 @@ public class CameraMovement : MonoBehaviour
     private void MoveCamera()
     {
         Vector3 MoveVector = transform.TransformDirection(MovementInput);
-        PlayerCamera.transform.position += MoveVector * Speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            PlayerCamera.transform.position += MoveVector * (Speed * 2) * Time.deltaTime;
+        }
+        else
+        {
+            PlayerCamera.transform.position += MoveVector * Speed * Time.deltaTime;
+        }
+        
     }
 
     private void RotateCamera()
