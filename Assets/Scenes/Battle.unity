@@ -264,7 +264,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -606,7 +606,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -766,9 +766,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082902aaf99268045bac209470ab4e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FootmanOriginal: {fileID: 7885583857032303764, guid: cb00ef77cdfef7744bdd9de39cbe6f49, type: 3}
+  UnitType:
+  - {fileID: 7885583857032303764, guid: cb00ef77cdfef7744bdd9de39cbe6f49, type: 3}
+  - {fileID: 701069868867950438, guid: c2972733d7944f5499215b736c88e35f, type: 3}
+  - {fileID: 2738637253747943139, guid: e583b5f2c63bc7c4487ede30c7443b58, type: 3}
   UnitContainer: {fileID: 226768732}
   amount: 50
+  index: 2
 --- !u!1 &1778326107
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +903,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5

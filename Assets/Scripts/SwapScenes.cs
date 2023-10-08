@@ -17,10 +17,10 @@ public class SwapScenes : MonoBehaviour
         switch (Input.inputString)
         {
             case "1":
-                SceneManager.LoadScene("Battle");
+                SceneManager.LoadScene("Battle", LoadSceneMode.Single);
                 break;
             case "2":
-                SceneManager.LoadScene("Map");
+                SceneManager.LoadScene("Map", LoadSceneMode.Single);
                 break;
             default:
                 return;
