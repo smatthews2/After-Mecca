@@ -34,11 +34,16 @@ public class CameraMovement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(MovementInput);
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            PlayerCamera.transform.position += MoveVector * (Speed * 2) * Time.deltaTime;
+            PlayerCamera.position += MoveVector * (Speed * 2) * Time.deltaTime;
         }
         else
         {
-            PlayerCamera.transform.position += MoveVector * Speed * Time.deltaTime;
+            PlayerCamera.position += MoveVector * Speed * Time.deltaTime;
+        }
+
+        if(PlayerCamera.position.y < 0f)
+        {
+            PlayerCamera.position += Vector3.up * 10;
         }
         
     }
@@ -48,6 +53,6 @@ public class CameraMovement : MonoBehaviour
         xRot -= MouseInput.y * Sensitivity;
         yRot += MouseInput.x * Sensitivity;
         transform.Rotate(MouseInput.x * Sensitivity, MouseInput.y * Sensitivity, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, yRot, 0f);
+        PlayerCamera.localRotation = Quaternion.Euler(xRot, yRot, 0f);
     }
 }
