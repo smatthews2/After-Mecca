@@ -9,8 +9,8 @@ public class BoxFormation : FormationBase {
     [SerializeField] private bool _hollow = false;
     [SerializeField] private float _nthOffset = 0;
 
-    public override IEnumerable<Vector3> EvaluatePoints() {
-        var middleOffset = new Vector3(_unitWidth * 0.5f, 0, _unitDepth * 0.5f);
+    public override IEnumerable<Vector3> EvaluatePoints(Vector3 centerPos) {
+        var middleOffset = new Vector3((_unitWidth * 0.5f) - centerPos.x, 0, (_unitDepth * 0.5f) - centerPos.z);
 
         for (var x = 0; x < _unitWidth; x++) {
             for (var z = 0; z < _unitDepth; z++) {

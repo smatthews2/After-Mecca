@@ -774,6 +774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitPrefab: {fileID: 333416573}
   _unitSpeed: 2
+  _armyCamera: {fileID: 0}
 --- !u!114 &1507068914
 MonoBehaviour:
   m_ObjectHideFlags: 0

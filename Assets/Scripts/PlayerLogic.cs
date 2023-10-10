@@ -10,7 +10,7 @@ public class PlayerLogic : MonoBehaviour
     private string groundTag = "Ground";
     private NavMeshAgent agent;
     private RaycastHit hit;
-    
+
 
     // Called when a script is enabled
     void Start()
