@@ -1,24 +1,27 @@
+/*
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class RadialFormation : FormationBase {
-    [SerializeField] private int _amount = 10;
-    [SerializeField] private float _radius = 1;
-    [SerializeField] private float _radiusGrowthMultiplier = 0;
-    [SerializeField] private float _rotations = 1;
-    [SerializeField] private int _rings = 1;
-    [SerializeField] private float _ringOffset = 1;
+public class ChevronFormation : FormationBase {
+    [SerializeField] private int _unitWidth = 5;
+    [SerializeField] private int _unitDepth = 5;
+    [SerializeField] private bool _hollow = false;
     [SerializeField] private float _nthOffset = 0;
+    private float rowOffset = -.5f;
+    private float xOffset = 1.0f;
+    private float zOffset = -1.0f;
 
     public override IEnumerable<Vector3> EvaluatePoints() {
         var amountPerRing = _amount / _rings;
         var ringOffset = 0f;
-        base._middleOffset = new Vector3((_radius * 0.5f) - (base._centerPosition.x / Spread), 0, (_radius * 0.5f) - (base._centerPosition.z / Spread));
-        
-        for (var i = 0; i < _rings; i++) {
-            for (var j = 0; j < amountPerRing; j++) {
+        for (var i = 0; i < _rings; i++)
+        {
+            for (var j = 0; j < amountPerRing; j++)
+            {
                 var angle = j * Mathf.PI * (2 * _rotations) / amountPerRing + (i % 2 != 0 ? _nthOffset : 0);
 
                 var radius = _radius + ringOffset + j * _radiusGrowthMultiplier;
@@ -26,8 +29,6 @@ public class RadialFormation : FormationBase {
                 var z = Mathf.Sin(angle) * radius;
 
                 var pos = new Vector3(x, 0, z);
-
-                pos -= _middleOffset;
 
                 pos += GetNoise(pos);
 
@@ -40,3 +41,4 @@ public class RadialFormation : FormationBase {
         }
     }
 }
+*/
