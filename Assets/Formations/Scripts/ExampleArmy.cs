@@ -4,11 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ExampleArmy : MonoBehaviour {
+public class ExampleArmy : MonoBehaviour
+{
     private FormationBase _formation;
 
-    public FormationBase Formation {
-        get {
+    public FormationBase Formation
+    {
+        get
+        {
             if (_formation == null) _formation = GetComponent<FormationBase>();
             return _formation;
         }
@@ -16,9 +19,12 @@ public class ExampleArmy : MonoBehaviour {
     }
 
     [SerializeField] private GameObject _unitPrefab;
+    [SerializeField] private GameObject _armyCommander;
     [SerializeField] private float _unitSpeed = 5;
+    [SerializeField] private float _followRange = 10;
     [SerializeField] private Camera _armyCamera;
     [SerializeField] private bool _isSelected = true;
+    
     private string groundTag = "Ground";
     private string playerTag = "Player";
     private RaycastHit hit;
@@ -26,36 +32,44 @@ public class ExampleArmy : MonoBehaviour {
     private readonly List<GameObject> _spawnedUnits = new List<GameObject>();
     private List<Vector3> _points = new List<Vector3>();
     private Transform _parent;
-    
-    private void Awake() {
+
+    private void Awake()
+    {
         _parent = new GameObject(_unitPrefab.name + " Parent").transform;
         _armyCamera = Camera.main;
     }
 
-    private void Update() {
+    private void Update()
+    {
         MoveArmy();
         SetFormation();
     }
 
-    private void SetFormation() {
+    private void SetFormation()
+    {
         _points = Formation.EvaluatePoints().ToList();
 
-        if (_points.Count > _spawnedUnits.Count) {
+        if (_points.Count > _spawnedUnits.Count)
+        {
             var remainingPoints = _points.Skip(_spawnedUnits.Count);
             Spawn(remainingPoints);
         }
-        else if (_points.Count < _spawnedUnits.Count) {
+        else if (_points.Count < _spawnedUnits.Count)
+        {
             Kill(_spawnedUnits.Count - _points.Count);
         }
 
-        for (var i = 0; i < _spawnedUnits.Count; i++) {
+        for (var i = 0; i < _spawnedUnits.Count; i++)
+        {
             _spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
         }
     }
 
-    private void Spawn(IEnumerable<Vector3> points) {
+    private void Spawn(IEnumerable<Vector3> points)
+    {
         int unitNum = 0;
-        foreach (var pos in points) {
+        foreach (var pos in points)
+        {
             var unit = Instantiate(_unitPrefab, transform.position + pos, Quaternion.identity, _parent);
             unit.name = _unitPrefab.name + "Clone" + unitNum;
             _spawnedUnits.Add(unit);
@@ -63,14 +77,16 @@ public class ExampleArmy : MonoBehaviour {
         }
     }
 
-    private void Kill(int num) {
-        for (var i = 0; i < num; i++) {
+    private void Kill(int num)
+    {
+        for (var i = 0; i < num; i++)
+        {
             var unit = _spawnedUnits.Last();
             _spawnedUnits.Remove(unit);
             Destroy(unit.gameObject);
         }
     }
-
+    /*
     private void MoveArmy()
     {
         if (Input.GetMouseButtonDown(0) && _isSelected)
@@ -99,6 +115,16 @@ public class ExampleArmy : MonoBehaviour {
                     _isSelected = !_isSelected; // Select unit on right click.
                 }
             }
+        }
+    }
+    */
+
+    private void MoveArmy()
+    {
+        Formation._centerPosition = new Vector3(_armyCommander.transform.position.x, 0, _armyCommander.transform.position.z - _followRange);
+        for (var i = 0; i < _spawnedUnits.Count; i++)
+        {
+            _spawnedUnits[i].transform.rotation = _armyCommander.transform.rotation;
         }
     }
 }

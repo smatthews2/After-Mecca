@@ -16,6 +16,7 @@ public class BoxFormation : FormationBase {
         for (var x = 0; x < _unitWidth; x++) {
             for (var z = 0; z < _unitDepth; z++) {
                 if (_hollow && x != 0 && x != _unitWidth - 1 && z != 0 && z != _unitDepth - 1) continue;
+                
                 var pos = new Vector3(x + (z % 2 == 0 ? 0 : _nthOffset), 0, z);
 
                 pos -= _middleOffset;
@@ -23,7 +24,7 @@ public class BoxFormation : FormationBase {
                 pos += GetNoise(pos);
 
                 pos *= Spread;
-
+                
                 yield return pos;
             }
         }

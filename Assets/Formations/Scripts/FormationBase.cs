@@ -9,6 +9,7 @@ public abstract class FormationBase : MonoBehaviour {
     [SerializeField] protected Vector3 _middleOffset = Vector3.zero;
     [SerializeField] public Vector3 _centerPosition = Vector3.zero;
     [SerializeField] protected bool _isActive = true;
+    [SerializeField] [Range(0, 50)] protected int numUnits = 10;
     
     public abstract IEnumerable<Vector3> EvaluatePoints();
 
