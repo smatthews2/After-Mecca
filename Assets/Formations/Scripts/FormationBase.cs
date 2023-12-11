@@ -18,4 +18,6 @@ public abstract class FormationBase : MonoBehaviour {
 
         return new Vector3(noise, 0, noise);
     }
+
+    public float GetSpread() { return this.Spread; }
 }

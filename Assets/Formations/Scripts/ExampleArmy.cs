@@ -121,7 +121,7 @@ public class ExampleArmy : MonoBehaviour
 
     private void MoveArmy()
     {
-        Formation._centerPosition = new Vector3(_armyCommander.transform.position.x, 0, _armyCommander.transform.position.z - _followRange);
+        Formation._centerPosition = new Vector3(_armyCommander.transform.position.x, 0, _armyCommander.transform.position.z - (_followRange * Formation.GetSpread()));
         for (var i = 0; i < _spawnedUnits.Count; i++)
         {
             _spawnedUnits[i].transform.rotation = _armyCommander.transform.rotation;

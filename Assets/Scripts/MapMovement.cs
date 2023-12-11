@@ -12,6 +12,13 @@ public class MapMovement : MonoBehaviour
     private RaycastHit hit;
     private Vector3 destination;
 
+    [Header("Points for line 1")]
+    public Vector2 pointA;
+    public Vector2 pointB;
+    [Header("Points for line 2")]
+    public Vector2 pointX;
+    public Vector2 pointY;
+
     // Start is called before the first frame update
     void Start()
     {
